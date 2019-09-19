@@ -312,9 +312,6 @@ def validate(val_loader, encoder, decoder, criterion):
                 temp_preds.append(preds[j][:decode_lengths[j]])  # remove pads
             preds = temp_preds
             hypotheses.extend(preds)
-            print(references)
-            print(hypotheses)
-
             assert len(references) == len(hypotheses)
 
         # Calculate BLEU-4 scores
