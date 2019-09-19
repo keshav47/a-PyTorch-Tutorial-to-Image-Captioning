@@ -92,7 +92,7 @@ def main():
         CaptionDataset(data_folder, data_name, 'TRAIN', transform=transforms.Compose([normalize])),
         batch_size=batch_size, shuffle=True, num_workers=workers, pin_memory=True)
     val_loader = torch.utils.data.DataLoader(
-        CaptionDataset(data_folder, data_name, 'VAL', transform=transforms.Compose([normalize])),
+        CaptionDataset(data_folder, data_name, 'TEST', transform=transforms.Compose([normalize])),
         batch_size=batch_size, shuffle=True, num_workers=workers, pin_memory=True)
 
     # Epochs
@@ -312,6 +312,8 @@ def validate(val_loader, encoder, decoder, criterion):
                 temp_preds.append(preds[j][:decode_lengths[j]])  # remove pads
             preds = temp_preds
             hypotheses.extend(preds)
+            print(references)
+            print(hypotheses)
 
             assert len(references) == len(hypotheses)
 
